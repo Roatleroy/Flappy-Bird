@@ -4,6 +4,7 @@ using UnityEngine;
 public class ScoreCollider : MonoBehaviour
 {
     public AddScore upgrade;
+    public AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +22,8 @@ public class ScoreCollider : MonoBehaviour
         {
             upgrade.Addition(1);
         }
-       
+
+        audioSource.Play();
+
     }
 }

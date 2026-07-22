@@ -4,14 +4,13 @@ using UnityEngine.InputSystem;
 
 public class BirdCode : MonoBehaviour
 {
-
+    //----------------------------  Bird Physics
     public Rigidbody2D myRigidbody;
     public float flapStrength;
     float targetRotation = -85f;
     public float rotationSpeedDown;
     public float rotationSpeedUp;
   
-
     float tiltUpTimer;
     public float tiltUpDuration;
 
@@ -19,6 +18,10 @@ public class BirdCode : MonoBehaviour
     private bool TRUF = true;
     public Spawner spawn;
     public AddScore upgrade;
+
+    //--------------------------- Audio
+    public AudioSource FLAP;
+    public AudioSource DIE;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,13 +38,14 @@ public class BirdCode : MonoBehaviour
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
             tiltUpTimer = tiltUpDuration;
+            FLAP.Play();
         }
        
         tiltUpTimer -= Time.deltaTime;
 
-        targetRotation = tiltUpTimer > 0f ? 20f : -85f;
+        targetRotation = tiltUpTimer > 0f ? 10f : -85f;
 
-        if (targetRotation == 20f)
+        if (targetRotation == 10f)
         {
             myRigidbody.rotation = Mathf.MoveTowards(
                 myRigidbody.rotation,
@@ -64,6 +68,7 @@ public class BirdCode : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("Obstacle"))
         {
+            DIE.Play();
             TRUF = false;
 
             foreach (PipeMove pipe in FindObjectsByType<PipeMove>())
