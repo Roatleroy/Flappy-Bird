@@ -2,45 +2,37 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    private GameObject pipeSpawned;
     public GameObject pipe;
-    public float spawnRate = 4f;
-    public float minimumSpawnRate = 1f;
-    public float spawnRateDecrease = 0.1f;
-
-    private float timer = 0f;
+    private bool canSpawn;
     public float heightOffset = 10;
+    public float Gapsize;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnRate -= 1f;
-        Instantiate(pipe, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
+        pipeSpawned = Instantiate(pipe, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
     }
 
     // Update is called once per frame
     void Update()
-    {                                                                                             
-        if (timer < spawnRate) {
-            timer += Time.deltaTime;
+    {
+        if (Vector3.Distance(transform.position, pipeSpawned.transform.position) > Gapsize)
+        {
+            canSpawn = true;
         }
-        else
+        if (canSpawn)
         {
             spawnPipe();
-            timer = 0;
+            canSpawn = false;
         }
-        
     }
 
     void spawnPipe()
     {
-        float lowestPoint = transform.position.y - heightOffset;
-        float highestPoint = transform.position.y + heightOffset;
-
-        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), transform.position.z), transform.rotation);
-
-        spawnRate = Mathf.Max(
-            minimumSpawnRate,
-            spawnRate - spawnRateDecrease
-        );
-
+        float lowestPoint = -heightOffset;
+        float highestPoint = heightOffset;
+        pipeSpawned = Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), transform.position.z), transform.rotation);
+        Gapsize -= 0.1f;
     }
 }

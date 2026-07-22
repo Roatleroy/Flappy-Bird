@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,20 +10,28 @@ public class BirdCode : MonoBehaviour
     float targetRotation = -85f;
     public float rotationSpeedDown;
     public float rotationSpeedUp;
+  
 
     float tiltUpTimer;
     public float tiltUpDuration;
 
+    // --------------------------  END GAME
+    private bool TRUF = true;
+    public Spawner spawn;
+    public AddScore upgrade;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        spawn = GameObject.FindGameObjectWithTag("PipeObject").GetComponent<Spawner>();
+        upgrade = GameObject.FindGameObjectWithTag("Logic").GetComponent<AddScore>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && TRUF)
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
             tiltUpTimer = tiltUpDuration;
@@ -50,4 +59,30 @@ public class BirdCode : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionEnter2D(Collision2D Collision)
+    {
+        if (Collision.gameObject.CompareTag("Obstacle"))
+        {
+            TRUF = false;
+
+            foreach (PipeMove pipe in FindObjectsByType<PipeMove>())
+            {
+                pipe.enabled = false;
+            }
+
+            spawn.enabled = false;
+
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D Collision)
+    {
+        if (Collision.GameObject().layer == 3)
+        {
+            upgrade.Addition(1);
+        }
+
+    }
+
 }
