@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1475699a524690a438168f1fbf134fff
+guid: 5d5718b501517d44b8c7d1dfe66d330f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3327267130531759673
-    second: Fantasy-Pipe-Flappy-Bird-Game-World-PNG_0
+      213: 3129484406111264849
+    second: floor sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fantasy-Pipe-Flappy-Bird-Game-World-PNG_0
+      name: floor sprite_0
       rect:
         serializedVersion: 2
-        x: 71
-        y: 1
-        width: 273
-        height: 512
+        x: 0
+        y: 3
+        width: 602
+        height: 223
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 936cd2c93d3dc2e20800000000000000
-      internalID: 3327267130531759673
+      spriteID: 150e2649c792e6b20800000000000000
+      internalID: 3129484406111264849
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fantasy-Pipe-Flappy-Bird-Game-World-PNG_0: 3327267130531759673
+      floor sprite_0: 3129484406111264849
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

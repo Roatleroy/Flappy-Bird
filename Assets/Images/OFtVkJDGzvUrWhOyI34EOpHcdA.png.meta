@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: eedfd80b63d92dc4aa77d05a69dafe58
+guid: e005ede738fd4ad419edde6c98afe322
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3209570013496138140
-    second: 151-1515315_flappy-bird-flappy-bird-graph-paper-drawing_0
+      213: 7021877342991587697
+    second: OFtVkJDGzvUrWhOyI34EOpHcdA_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 151-1515315_flappy-bird-flappy-bird-graph-paper-drawing_0
+      name: OFtVkJDGzvUrWhOyI34EOpHcdA_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 817
-        height: 577
+        width: 900
+        height: 504
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 46621d7e3115573d0800000000000000
-      internalID: -3209570013496138140
+      spriteID: 179906d6d38b27160800000000000000
+      internalID: 7021877342991587697
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      151-1515315_flappy-bird-flappy-bird-graph-paper-drawing_0: -3209570013496138140
+      OFtVkJDGzvUrWhOyI34EOpHcdA_0: 7021877342991587697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

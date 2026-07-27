@@ -18,6 +18,7 @@ public class BirdCode : MonoBehaviour
     private bool TRUF = true;
     public Spawner spawn;
     public AddScore upgrade;
+    public GroundSpawn groundSpawn;
 
     //--------------------------- Audio
     public AudioSource FLAP;
@@ -68,6 +69,7 @@ public class BirdCode : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("Obstacle"))
         {
+            groundSpawn = GameObject.FindGameObjectWithTag("GroundSpawn").GetComponent<GroundSpawn>();
             DIE.Play();
             TRUF = false;
 
@@ -76,6 +78,12 @@ public class BirdCode : MonoBehaviour
                 pipe.enabled = false;
             }
 
+            foreach(GroundMove Ground in FindObjectsByType<GroundMove>())
+            {
+                Ground.enabled = false;
+            }
+
+            groundSpawn.enabled = false;
             spawn.enabled = false;
 
         }
