@@ -3,20 +3,20 @@ using UnityEngine;
 public class GroundMove : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public float moveSpeed = 15f;
-    private float speedIncrease = 0.5f;
-    private float deadzone = -500f;
+    //public float moveSpeed = 15f;
+    //private float speedIncrease = 0.5f;
+    private float deadzone = -250f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moveSpeed = PipeMove.moveSpeed;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * (moveSpeed * Time.deltaTime);
+        transform.position += Vector3.left * (PipeMove.moveSpeed * Time.deltaTime);
 
         if (transform.position.x < deadzone)
         {

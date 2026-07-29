@@ -9,7 +9,7 @@ public class GroundSpawn : MonoBehaviour
     {
         GroundSpawned = Instantiate(
             Cloud,
-            new Vector3(0f, -36f, transform.position.z),
+            new Vector3(0f, -38f, transform.position.z),
             transform.rotation
         );
     }
@@ -26,7 +26,7 @@ public class GroundSpawn : MonoBehaviour
     {
         GroundSpawned = Instantiate(
             Cloud,
-            new Vector3(106f, -36f, transform.position.z),
+            new Vector3(106f, -38f, transform.position.z),
             transform.rotation
         );
     }

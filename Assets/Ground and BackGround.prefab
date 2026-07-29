@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5055528428068954210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107, y: -36, z: 0}
+  m_LocalPosition: {x: -107, y: -41.2, z: 0}
   m_LocalScale: {x: 17.655113, y: 14.058842, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,9 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073bf1003aa925247b6a033ec4e10320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CloudMove
-  moveSpeed: 15
-  speedIncrease: 0.5
-  deadzone: -500
 --- !u!1 &6170069404837455924
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,8 +72,8 @@ Transform:
   m_GameObject: {fileID: 6170069404837455924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00421, y: 0, z: 0}
-  m_LocalScale: {x: 1.0071062, y: 1, z: 1}
+  m_LocalPosition: {x: 0.00506, y: 0.20427, z: 0}
+  m_LocalScale: {x: 1.472428, y: 1.1954889, z: 1.4442643}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4669789291003302124}
@@ -130,7 +127,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3129484406111264849, guid: 5d5718b501517d44b8c7d1dfe66d330f, type: 3}
+  m_Sprite: {fileID: 2158598602118881586, guid: dd1108c9854b290489de9431feb95080, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -3,19 +3,14 @@ using UnityEngine;
 
 public class ScoreCollider : MonoBehaviour
 {
-    public AddScore upgrade;
+    public LogicBoard upgrade;
     public AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       upgrade = GameObject.FindGameObjectWithTag("Logic").GetComponent<AddScore>();
+       upgrade = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicBoard>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D Collision)
     {
         if (Collision.GameObject().layer == 3)

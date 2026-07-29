@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PipeMove : MonoBehaviour
 {
-    public static float moveSpeed = 15f;
+    public static float moveSpeed = 14.5f;
     public float speedIncrease = 0.5f;
     public float deadzone = -65f;
 

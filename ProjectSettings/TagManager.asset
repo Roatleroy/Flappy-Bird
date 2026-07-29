@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - PipeObject
   - GroundSpawn
+  - Spawner
   layers:
   - Default
   - TransparentFX
