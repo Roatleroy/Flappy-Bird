@@ -88,6 +88,7 @@ public class BirdCode : MonoBehaviour
             groundSpawn.enabled = false;
             spawn.enabled = false;
 
+            logicBoard.endGameMenu();
         }
     }
 
