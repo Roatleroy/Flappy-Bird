@@ -23,6 +23,7 @@ public class BirdCode : MonoBehaviour
     //--------------------------- Audio
     public AudioSource FLAP;
     public AudioSource DIE;
+    public AudioSource menu;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,7 +35,7 @@ public class BirdCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && logicBoard.TRUF)
+        if ((Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && logicBoard.TRUF)
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
             tiltUpTimer = tiltUpDuration;
@@ -78,6 +79,9 @@ public class BirdCode : MonoBehaviour
             foreach (PipeMove pipe in FindObjectsByType<PipeMove>())
             {
                 pipe.enabled = false;
+
+                Transform bottomPipe = pipe.transform.Find("Bottom Pipe");
+                bottomPipe.GetComponent<BoxCollider2D>().enabled = false;
             }
 
             foreach(GroundMove Ground in FindObjectsByType<GroundMove>())
@@ -88,7 +92,11 @@ public class BirdCode : MonoBehaviour
             groundSpawn.enabled = false;
             spawn.enabled = false;
 
+        }
+        else
+        {
             logicBoard.endGameMenu();
+            menu.Play();
         }
     }
 

@@ -5,7 +5,7 @@ public class Spawner : MonoBehaviour
     private GameObject pipeSpawned;
     public GameObject pipe;
     private bool canSpawn = true;
-    public float heightOffset = 10;
+    public float heightOffset = 25;
     public float Gapsize;
     
 
@@ -28,6 +28,5 @@ public class Spawner : MonoBehaviour
         float lowestPoint = -heightOffset;
         float highestPoint = heightOffset;
         pipeSpawned = Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), transform.position.z), transform.rotation);
-        Gapsize = Mathf.Max(5f, Gapsize - 0.1f);
     }
 }

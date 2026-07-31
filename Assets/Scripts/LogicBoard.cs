@@ -10,7 +10,6 @@ public class LogicBoard : MonoBehaviour
     public static int highestScore;
     public bool start = false;
 
-
     // Text on the scoreboard of the running game
     public Text scoreText;
     // Score on endgame screen
@@ -21,6 +20,8 @@ public class LogicBoard : MonoBehaviour
 
     public GameObject Score;
     public bool TRUF = false;
+
+    public BirdCode Bird;
     //-------------------- This a reference to the PipeSpawner game object
     public GameObject spawn;
     //----------------------- Play Menu
@@ -67,8 +68,10 @@ public class LogicBoard : MonoBehaviour
     // This takes the input from BirdCode, when bird collides with collider it puts the end game menu on
     public void endGameMenu()
     {
+
         Score.SetActive(false);
         ScoreBoard.SetActive(true);
+        Bird.enabled = false;
         highestScore = Mathf.Max(highestScore, score);
         BestScore.text = highestScore.ToString();
         EndScore.text = scoreText.text;
