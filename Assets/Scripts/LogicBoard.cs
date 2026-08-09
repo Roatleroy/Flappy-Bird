@@ -1,9 +1,25 @@
+using Newtonsoft.Json;
+using NUnit.Framework;
 using NUnit.Framework.Internal;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
+[System.Serializable]
+public class PlayerStats
+{
+    public int score;
+    public int gold;
+    public int silver;
+    public int bronze;
+}
 public class LogicBoard : MonoBehaviour
 {
     public int score;
@@ -26,7 +42,7 @@ public class LogicBoard : MonoBehaviour
     public GameObject spawn;
     //----------------------- Play Menu
     public GameObject playButton;
-    public GameObject tierButton;
+    public GameObject LeaderBoardObject;
     public GameObject logo;
     //----------------------- End Menu
     public GameObject restartButton;
@@ -38,12 +54,33 @@ public class LogicBoard : MonoBehaviour
     public GameObject Silver;
     public GameObject Bronze;
 
+    //-------------------- Json Variable Key:Value(Struct) Object
+    [System.Serializable]
+    public class LeaderboardEntry
+    {
+        public string playerName;
+        public PlayerStats stats;
+    }
+
+    public List<LeaderboardEntry> leaderboard = new List<LeaderboardEntry>();
+
+    //----- Game Object for LeaderBoard Username Spawning
+    public GameObject textMeshPrefab;
+    public Transform uiContentContainer;
+
+    public TextMeshProUGUI First_Place;
+    public TextMeshProUGUI Second_Place;
+    public TextMeshProUGUI Third_Place;
+
+    private string serverUrl = "https://localhost:7130/api/game/scores";
 
     void Start()
     {
         spawn.SetActive(false);
         Score.SetActive(false);
         ScoreBoard.SetActive(false);
+
+        StartCoroutine(FetchScoresFromServer());
     }
 
     [ContextMenu("Increase Scores")]
@@ -59,10 +96,15 @@ public class LogicBoard : MonoBehaviour
 
         spawn.SetActive(true);
         playButton.SetActive(false);
-        tierButton.SetActive(false);
+        LeaderBoardObject.SetActive(false);
         logo.SetActive(false);
         Score.SetActive(true);
         TRUF = true;
+    }
+
+    public void startLeaderBoard()
+    {
+        LeaderBoardObject.SetActive(true);
     }
 
     // This takes the input from BirdCode, when bird collides with collider it puts the end game menu on
@@ -94,5 +136,70 @@ public class LogicBoard : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         PipeMove.moveSpeed = 14.5f;
+    }
+
+    IEnumerator FetchScoresFromServer()
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(serverUrl))
+        {
+            // Crucial for testing: allows Unity to trust Visual Studio's local SSL certificate
+            webRequest.certificateHandler = new BypassCertificateHandler();
+
+            Debug.Log("Pinging the game server...");
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                string jsonResult = webRequest.downloadHandler.text;
+                Debug.Log("Successfully fetched data from server: " + jsonResult);
+
+                // Next, you will parse this jsonResult to update your UI!
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, PlayerStats>>(jsonResult);
+
+                leaderboard.Clear();
+                foreach (Transform child in uiContentContainer)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                if (dict != null)
+                {
+                    foreach (var kvp in dict)
+                    {
+                        leaderboard.Add(new LeaderboardEntry { playerName = kvp.Key, stats = kvp.Value });
+
+                    }
+                }
+
+                if (leaderboard.Count > 3)
+                {
+                    First_Place.text = leaderboard[0].playerName;
+                    Second_Place.text = leaderboard[1].playerName;
+                    Third_Place.text = leaderboard[2].playerName;
+                }
+
+                for (int i = 3; i < leaderboard.Count; i++)
+                {
+                    LeaderboardEntry entry = leaderboard[i];
+
+                    // 6. Create the new TextMeshPro element on the screen inside the container
+                    GameObject newTextObj = Instantiate(textMeshPrefab, uiContentContainer);
+                    TextMeshProUGUI tmpText = newTextObj.GetComponent<TextMeshProUGUI>();
+
+                    // 7. Combine the index, name, score, and medals into a formatted row layout
+                    tmpText.text = $"{entry.playerName}    {entry.stats.score}    {entry.stats.gold}  {entry.stats.silver}  {entry.stats.bronze}";
+                }
+            }
+            else
+            {
+                Debug.LogError("Server Connection Failed: " + webRequest.error);
+            }
+        }
+    }
+
+    // Helper class so Unity doesn't block local development certificates
+    public class BypassCertificateHandler : CertificateHandler
+    {
+        protected override bool ValidateCertificate(byte[] certificateData) => true;
     }
 }

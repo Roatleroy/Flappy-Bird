@@ -9,6 +9,7 @@ TagManager:
   - PipeObject
   - GroundSpawn
   - Spawner
+  - Floor
   layers:
   - Default
   - TransparentFX

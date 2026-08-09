@@ -71,7 +71,7 @@ public class BirdCode : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D Collision)
     {
-        if (Collision.gameObject.CompareTag("Obstacle"))
+        if (Collision.gameObject.CompareTag("Obstacle") || Collision.gameObject.CompareTag("Floor"))
         {
             groundSpawn = GameObject.FindGameObjectWithTag("GroundSpawn").GetComponent<GroundSpawn>();
             DIE.Play();
@@ -89,11 +89,16 @@ public class BirdCode : MonoBehaviour
                 Ground.enabled = false;
             }
 
+            foreach(BackGroundMove BackMove in FindObjectsByType<BackGroundMove>())
+            {
+                BackMove.enabled = false;
+            }
+
             groundSpawn.enabled = false;
             spawn.enabled = false;
 
         }
-        else
+        if (Collision.gameObject.CompareTag("Floor"))
         {
             logicBoard.endGameMenu();
             menu.Play();
