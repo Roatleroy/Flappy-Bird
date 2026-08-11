@@ -167,7 +167,6 @@ public class LogicBoard : MonoBehaviour
                     foreach (var kvp in dict)
                     {
                         leaderboard.Add(new LeaderboardEntry { playerName = kvp.Key, stats = kvp.Value });
-
                     }
                 }
 
@@ -182,12 +181,18 @@ public class LogicBoard : MonoBehaviour
                 {
                     LeaderboardEntry entry = leaderboard[i];
 
-                    // 6. Create the new TextMeshPro element on the screen inside the container
-                    GameObject newTextObj = Instantiate(textMeshPrefab, uiContentContainer);
-                    TextMeshProUGUI tmpText = newTextObj.GetComponent<TextMeshProUGUI>();
+                    GameObject TextRow = Instantiate(textMeshPrefab, uiContentContainer);
 
-                    // 7. Combine the index, name, score, and medals into a formatted row layout
-                    tmpText.text = $"{entry.playerName}    {entry.stats.score}    {entry.stats.gold}  {entry.stats.silver}  {entry.stats.bronze}";
+                    TextMeshProUGUI nameText = TextRow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI scoreText = TextRow.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI medalText = TextRow.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+                    
+                    nameText.text = entry.playerName;
+                    scoreText.text = entry.stats.score.ToString();
+
+                    // Optional: Combine gold, silver, and bronze into the third medal column
+                    medalText.text = $"{entry.stats.gold}   {entry.stats.silver}   {entry.stats.bronze}";
                 }
             }
             else

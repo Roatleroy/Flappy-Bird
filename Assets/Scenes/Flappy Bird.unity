@@ -2115,7 +2115,7 @@ MonoBehaviour:
   Silver: {fileID: 434536607}
   Bronze: {fileID: 81535336}
   leaderboard: []
-  textMeshPrefab: {fileID: 5124400115751638855, guid: a40d443a72289034d9daf1260e08e2f0, type: 3}
+  textMeshPrefab: {fileID: 4449744699714858340, guid: 828c15ce4d75ba449b928f554769f2e0, type: 3}
   uiContentContainer: {fileID: 1725356192}
   First_Place: {fileID: 1738115544}
   Second_Place: {fileID: 1355774175}
@@ -3384,7 +3384,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -555.82874, y: 514.0982}
-  m_SizeDelta: {x: 1111.6581, y: 48}
+  m_SizeDelta: {x: 1111.6581, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1725356194
 MonoBehaviour:
@@ -3399,16 +3399,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
   m_Padding:
-    m_Left: 26
-    m_Right: 26
-    m_Top: 24
-    m_Bottom: 24
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 20
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
