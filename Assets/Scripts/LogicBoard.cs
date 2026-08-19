@@ -207,4 +207,5 @@ public class LogicBoard : MonoBehaviour
     {
         protected override bool ValidateCertificate(byte[] certificateData) => true;
     }
+
 }

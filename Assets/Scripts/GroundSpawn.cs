@@ -47,7 +47,7 @@ public class GroundSpawn : MonoBehaviour
     {
         Background = Instantiate(
             BackPre,
-            new Vector3(187.9f, 10.309f, transform.position.z),
+            new Vector3(187.7f, 10.309f, transform.position.z),
             transform.rotation
         );
     }
