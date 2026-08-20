@@ -3,8 +3,7 @@ using UnityEngine;
 public class BackGroundMove : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //public float moveSpeed = 15f;
-    //private float speedIncrease = 0.5f;
+   
     private float deadzone = -100f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

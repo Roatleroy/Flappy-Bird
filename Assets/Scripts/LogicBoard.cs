@@ -74,6 +74,9 @@ public class LogicBoard : MonoBehaviour
 
     private string serverUrl = "https://localhost:7130/api/game/scores";
 
+
+    public GameObject CreateUser;
+
     void Start()
     {
         spawn.SetActive(false);
@@ -92,7 +95,7 @@ public class LogicBoard : MonoBehaviour
 
     // When the Game starts up for the first time and user hits play it starts the game
     // Disables Menu Screen
-    public void startGameMenu() {
+    public void startGame() {
 
         spawn.SetActive(true);
         playButton.SetActive(false);
@@ -100,6 +103,13 @@ public class LogicBoard : MonoBehaviour
         logo.SetActive(false);
         Score.SetActive(true);
         TRUF = true;
+    }
+
+    public void startMenu()
+    {
+        CreateUser.SetActive(false);
+        playButton.SetActive(true);
+        logo.SetActive(true);
     }
 
     public void startLeaderBoard()
