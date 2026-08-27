@@ -1,17 +1,35 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+using TMPro;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
+
+[System.Serializable]
+public class Update
+{
+    public string Username { get; set; } = string.Empty;
+    public string Unity_ID { get; set; } = string.Empty;
+}
+[System.Serializable]
+public class PlayerData
+{
+    public string username;
+    public int score;
+}
 [System.Serializable]
 public class PlayerStats
 {
@@ -72,10 +90,47 @@ public class LogicBoard : MonoBehaviour
     public TextMeshProUGUI Second_Place;
     public TextMeshProUGUI Third_Place;
 
-    private string serverUrl = "https://localhost:7130/api/game/scores";
+    private string GetserverUrl = "https://localhost:7130/api/game/scores";
 
 
+
+    /// <summary>
+    /// USER CREATION VARIABLES
+    /// </summary>
     public GameObject CreateUser;
+    public PlayerAPI playerCheck;
+    public TMP_InputField usernameText;
+    public Image myImageMany;
+    public Image myImageTaken;
+
+    private async void Awake()
+    {
+        await UnityServices.InitializeAsync();
+
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
+
+        string playerId = AuthenticationService.Instance.PlayerId;
+
+        Debug.Log("Player ID: " + playerId);
+        
+        var response = await playerCheck.CheckPlayer(playerId);
+
+        if (response != null)
+        {
+            Debug.Log(response.username);
+            Debug.Log(response.score);
+
+            startMenu();
+        }
+        else
+        {
+            Debug.Log("Player Doesn't Exist Yet");
+        }
+        
+    }
 
     void Start()
     {
@@ -105,6 +160,28 @@ public class LogicBoard : MonoBehaviour
         TRUF = true;
     }
 
+
+    public async void createUser()
+    {
+        string username = usernameText.text;
+
+        if (username.Length > 15 || username.Length < 2)
+        {
+            myImageMany.gameObject.SetActive(true);
+            myImageTaken.gameObject.SetActive(false);
+            usernameText.text = "";
+        }
+        else if (!(await playerCheck.CheckUsername(username)))
+        {
+            Debug.Log(usernameText.text + " Created");
+        }
+        else
+        {
+            myImageMany.gameObject.SetActive(false);
+            myImageTaken.gameObject.SetActive(true);
+            usernameText.text = "";
+        }
+    }
     public void startMenu()
     {
         CreateUser.SetActive(false);
@@ -150,7 +227,7 @@ public class LogicBoard : MonoBehaviour
 
     IEnumerator FetchScoresFromServer()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(serverUrl))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(GetserverUrl))
         {
             // Crucial for testing: allows Unity to trust Visual Studio's local SSL certificate
             webRequest.certificateHandler = new BypassCertificateHandler();
@@ -180,29 +257,45 @@ public class LogicBoard : MonoBehaviour
                     }
                 }
 
-                if (leaderboard.Count > 3)
+                switch(leaderboard.Count)
                 {
-                    First_Place.text = leaderboard[0].playerName;
-                    Second_Place.text = leaderboard[1].playerName;
-                    Third_Place.text = leaderboard[2].playerName;
-                }
+                    case 0:
+                        break;
+                    case 1:
+                        First_Place.text = leaderboard[0].playerName;
+                        break;
+                    case 2:
+                        First_Place.text = leaderboard[0].playerName;
+                        Second_Place.text = leaderboard[1].playerName;
+                        break;
+                    case 3:
+                        First_Place.text = leaderboard[0].playerName;
+                        Second_Place.text = leaderboard[1].playerName;
+                        Third_Place.text = leaderboard[2].playerName;
+                        break;
+                    default:
+                        First_Place.text = leaderboard[0].playerName;
+                        Second_Place.text = leaderboard[1].playerName;
+                        Third_Place.text = leaderboard[2].playerName;
+                        for (int i = 3; i < leaderboard.Count; i++)
+                        {
+                            LeaderboardEntry entry = leaderboard[i];
 
-                for (int i = 3; i < leaderboard.Count; i++)
-                {
-                    LeaderboardEntry entry = leaderboard[i];
+                            GameObject TextRow = Instantiate(textMeshPrefab, uiContentContainer);
 
-                    GameObject TextRow = Instantiate(textMeshPrefab, uiContentContainer);
+                            TextMeshProUGUI nameText = TextRow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                            TextMeshProUGUI scoreText = TextRow.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                            TextMeshProUGUI medalText = TextRow.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-                    TextMeshProUGUI nameText = TextRow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-                    TextMeshProUGUI scoreText = TextRow.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-                    TextMeshProUGUI medalText = TextRow.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-                    
-                    nameText.text = entry.playerName;
-                    scoreText.text = entry.stats.score.ToString();
+                            nameText.text = entry.playerName;
+                            scoreText.text = entry.stats.score.ToString();
 
-                    // Optional: Combine gold, silver, and bronze into the third medal column
-                    medalText.text = $"{entry.stats.gold}   {entry.stats.silver}   {entry.stats.bronze}";
+                            // Optional: Combine gold, silver, and bronze into the third medal column
+                            medalText.text = $"{entry.stats.gold}   {entry.stats.silver}   {entry.stats.bronze}";
+                        }
+                        break;
+
                 }
             }
             else
