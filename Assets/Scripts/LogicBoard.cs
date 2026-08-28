@@ -19,10 +19,10 @@ using UnityEngine.UI;
 
 
 [System.Serializable]
-public class Update
+public class PlayerCreate
 {
-    public string Username { get; set; } = string.Empty;
-    public string Unity_ID { get; set; } = string.Empty;
+    public string Username;
+    public string Unity_ID;
 }
 [System.Serializable]
 public class PlayerData
@@ -30,14 +30,7 @@ public class PlayerData
     public string username;
     public int score;
 }
-[System.Serializable]
-public class PlayerStats
-{
-    public int score;
-    public int gold;
-    public int silver;
-    public int bronze;
-}
+
 public class LogicBoard : MonoBehaviour
 {
     public int score;
@@ -68,11 +61,21 @@ public class LogicBoard : MonoBehaviour
     public GameObject highScore;
     public GameObject regularScore;
     // Rating Objects
+    
     public GameObject Gold;
     public GameObject Silver;
     public GameObject Bronze;
-
+/*
     //-------------------- Json Variable Key:Value(Struct) Object
+ 
+    [System.Serializable]
+    public class PlayerStats
+    {
+        public int score;
+        public int gold;
+        public int silver;
+        public int bronze;
+    }
     [System.Serializable]
     public class LeaderboardEntry
     {
@@ -91,12 +94,11 @@ public class LogicBoard : MonoBehaviour
     public TextMeshProUGUI Third_Place;
 
     private string GetserverUrl = "https://localhost:7130/api/game/scores";
+    */
 
-
-
-    /// <summary>
-    /// USER CREATION VARIABLES
-    /// </summary>
+    public PlayerCreate newPlayer = new PlayerCreate();
+   
+    // USER CREATION VARIABLES
     public GameObject CreateUser;
     public PlayerAPI playerCheck;
     public TMP_InputField usernameText;
@@ -127,6 +129,7 @@ public class LogicBoard : MonoBehaviour
         }
         else
         {
+            newPlayer.Unity_ID = playerId;
             Debug.Log("Player Doesn't Exist Yet");
         }
         
@@ -138,10 +141,9 @@ public class LogicBoard : MonoBehaviour
         Score.SetActive(false);
         ScoreBoard.SetActive(false);
 
-        StartCoroutine(FetchScoresFromServer());
+        StartCoroutine(playerCheck.FetchScoresFromServer());
     }
 
-    [ContextMenu("Increase Scores")]
     public void Addition(int add)
     {
         score += add;
@@ -173,7 +175,14 @@ public class LogicBoard : MonoBehaviour
         }
         else if (!(await playerCheck.CheckUsername(username)))
         {
-            Debug.Log(usernameText.text + " Created");
+            newPlayer.Username = username;
+           
+            if (await playerCheck.PostPlayer(newPlayer))
+            { 
+                Debug.Log(usernameText.text + " Created");
+                startMenu();
+            }
+           
         }
         else
         {
@@ -225,6 +234,7 @@ public class LogicBoard : MonoBehaviour
         PipeMove.moveSpeed = 14.5f;
     }
 
+    /*
     IEnumerator FetchScoresFromServer()
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(GetserverUrl))
@@ -310,5 +320,5 @@ public class LogicBoard : MonoBehaviour
     {
         protected override bool ValidateCertificate(byte[] certificateData) => true;
     }
-
+    */
 }

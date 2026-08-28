@@ -2543,12 +2543,9 @@ MonoBehaviour:
   Gold: {fileID: 856278848}
   Silver: {fileID: 434536607}
   Bronze: {fileID: 81535336}
-  leaderboard: []
-  textMeshPrefab: {fileID: 4449744699714858340, guid: 828c15ce4d75ba449b928f554769f2e0, type: 3}
-  uiContentContainer: {fileID: 1725356192}
-  First_Place: {fileID: 1738115544}
-  Second_Place: {fileID: 1355774175}
-  Third_Place: {fileID: 1039217347}
+  newPlayer:
+    Username: 
+    Unity_ID: 
   CreateUser: {fileID: 455401760}
   playerCheck: {fileID: 2032572686}
   usernameText: {fileID: 819586817}
@@ -5124,6 +5121,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAPI
   playerData: {fileID: 786400314}
   playerPost: {fileID: 786400314}
+  leaderboard: []
+  textMeshPrefab: {fileID: 4449744699714858340, guid: 828c15ce4d75ba449b928f554769f2e0, type: 3}
+  uiContentContainer: {fileID: 1725356192}
+  First_Place: {fileID: 1738115544}
+  Second_Place: {fileID: 1355774175}
+  Third_Place: {fileID: 1039217347}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5134,9 +5137,9 @@ SceneRoots:
   - {fileID: 301286913}
   - {fileID: 1932486633}
   - {fileID: 786400315}
+  - {fileID: 2032572685}
   - {fileID: 494706881}
   - {fileID: 276795281}
   - {fileID: 1995468791}
   - {fileID: 282366401}
   - {fileID: 336348681}
-  - {fileID: 2032572685}
