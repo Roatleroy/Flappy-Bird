@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &301286912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240d18a747ea2bf45a675ab64d307d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  pipeSpawned: {fileID: 0}
   pipe: {fileID: 8799542830253071600, guid: 778c74a5165e58b4ab5e7596f1dea4b0, type: 3}
+  canSpawn: 1
   heightOffset: 10
   Gapsize: 40
 --- !u!4 &301286913
@@ -2524,6 +2526,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94fe5812940e71439b018d184a1d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  end:
+    unity_id: 
+    score: 0
+    gold: 0
+    silver: 0
+    bronze: 0
   score: 0
   start: 0
   scoreText: {fileID: 1919089627}
@@ -2532,8 +2540,9 @@ MonoBehaviour:
   Score: {fileID: 1919089626}
   TRUF: 0
   Bird: {fileID: 446687999}
+  BirdObject: {fileID: 446687994}
   spawn: {fileID: 301286911}
-  playButton: {fileID: 1359050937}
+  playButton: {fileID: 1706648428}
   LeaderBoardObject: {fileID: 1923060747}
   logo: {fileID: 1706648428}
   restartButton: {fileID: 133693247}
@@ -2551,6 +2560,7 @@ MonoBehaviour:
   usernameText: {fileID: 819586817}
   myImageMany: {fileID: 1237338222}
   myImageTaken: {fileID: 975616446}
+  value: {fileID: 301286912}
 --- !u!4 &786400315
 Transform:
   m_ObjectHideFlags: 0

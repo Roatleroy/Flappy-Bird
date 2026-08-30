@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private GameObject pipeSpawned;
+    public GameObject pipeSpawned;
     public GameObject pipe;
-    private bool canSpawn = true;
+    public bool canSpawn = true;
     public float heightOffset = 25;
     public float Gapsize;
     
@@ -16,6 +16,10 @@ public class Spawner : MonoBehaviour
         {
             spawnPipe();
             canSpawn = false;
+        }
+        if (pipeSpawned == null)
+        {
+            return;
         }
         if (Vector3.Distance(transform.position, pipeSpawned.transform.position) > Gapsize)
         {

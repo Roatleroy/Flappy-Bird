@@ -25,13 +25,10 @@ public class BirdCode : MonoBehaviour
     public AudioSource DIE;
     public AudioSource menu;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        spawn = GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>();
+        groundSpawn = GameObject.FindGameObjectWithTag("GroundSpawn").GetComponent<GroundSpawn>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -73,7 +70,6 @@ public class BirdCode : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("Obstacle") || Collision.gameObject.CompareTag("Floor"))
         {
-            groundSpawn = GameObject.FindGameObjectWithTag("GroundSpawn").GetComponent<GroundSpawn>();
             DIE.Play();
 
             foreach (PipeMove pipe in FindObjectsByType<PipeMove>())
@@ -95,7 +91,6 @@ public class BirdCode : MonoBehaviour
             }
 
             groundSpawn.enabled = false;
-            spawn.enabled = false;
 
         }
         if (Collision.gameObject.CompareTag("Floor"))

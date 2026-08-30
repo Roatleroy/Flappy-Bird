@@ -31,8 +31,19 @@ public class PlayerData
     public int score;
 }
 
+[System.Serializable]
+public class EndData
+{
+    public string unity_id;
+    public int score;
+    public int gold;
+    public int silver;
+    public int bronze;
+}
+
 public class LogicBoard : MonoBehaviour
 {
+    public EndData end = new EndData();
     public int score;
     public static int highestScore;
     public bool start = false;
@@ -49,6 +60,7 @@ public class LogicBoard : MonoBehaviour
     public bool TRUF = false;
 
     public BirdCode Bird;
+    public GameObject BirdObject;
     //-------------------- This a reference to the PipeSpawner game object
     public GameObject spawn;
     //----------------------- Play Menu
@@ -105,8 +117,16 @@ public class LogicBoard : MonoBehaviour
     public Image myImageMany;
     public Image myImageTaken;
 
+    private Vector3 birdStartPosition;
+
+    public Spawner value;
+
     private async void Awake()
     {
+        birdStartPosition = BirdObject.transform.position;
+
+        StartCoroutine(playerCheck.FetchScoresFromServer());
+
         await UnityServices.InitializeAsync();
 
         if (!AuthenticationService.Instance.IsSignedIn)
@@ -116,14 +136,18 @@ public class LogicBoard : MonoBehaviour
 
         string playerId = AuthenticationService.Instance.PlayerId;
 
-        Debug.Log("Player ID: " + playerId);
+        //Debug.Log("Player ID: " + playerId);
+
+        end.unity_id = playerId;
         
         var response = await playerCheck.CheckPlayer(playerId);
 
+        end.score = response.score;
+
         if (response != null)
         {
-            Debug.Log(response.username);
-            Debug.Log(response.score);
+            //Debug.Log(response.username);
+            //Debug.Log(response.score);
 
             startMenu();
         }
@@ -137,11 +161,7 @@ public class LogicBoard : MonoBehaviour
 
     void Start()
     {
-        spawn.SetActive(false);
-        Score.SetActive(false);
-        ScoreBoard.SetActive(false);
-
-        StartCoroutine(playerCheck.FetchScoresFromServer());
+        
     }
 
     public void Addition(int add)
@@ -160,6 +180,7 @@ public class LogicBoard : MonoBehaviour
         logo.SetActive(false);
         Score.SetActive(true);
         TRUF = true;
+        value.canSpawn = true;
     }
 
 
@@ -211,28 +232,81 @@ public class LogicBoard : MonoBehaviour
         ScoreBoard.SetActive(true);
         Bird.enabled = false;
         highestScore = Mathf.Max(highestScore, score);
+
+        //
+        end.score = Mathf.Max(highestScore, end.score);
+        //
+
         BestScore.text = highestScore.ToString();
         EndScore.text = scoreText.text;
 
         if (score > 9 && score < 15)
         {
             Bronze.SetActive(true);
+            end.bronze += 1;
         }
         if(score > 14 && score < 20)
         {
             Silver.SetActive(true);
+            end.silver += 1;
         }
         if(score > 19)
         {
             Gold.SetActive(true);
+            end.gold += 1;
         }
     }
 
     public void ResetScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    { 
+        Debug.Log("RESET START");
+
+        playButton.SetActive(true);
+        LeaderBoardObject.SetActive(false);
+        Score.SetActive(false);
+        TRUF = false;
+        ScoreBoard.SetActive(false);
+
+        foreach (GameObject pipe in GameObject.FindGameObjectsWithTag("PipeObject"))
+        {
+            Destroy(pipe);
+        }
+        value.pipeSpawned = null;
+
+        foreach (GroundMove Ground in FindObjectsByType<GroundMove>())
+        {
+            Ground.enabled = true;
+        }
+
+        foreach (BackGroundMove BackMove in FindObjectsByType<BackGroundMove>())
+        {
+            BackMove.enabled = true;
+        }
+
+        Debug.Log("Before ground spawn");
+
+        Bird.groundSpawn.enabled = true;
+
+        Debug.Log("After ground spawn");
+
+        score = 0;
+        scoreText.text = score.ToString();
+
+        Debug.Log("After score");
+
+        Bird.enabled = true;
+
+        Debug.Log("After Bird");
+
+        BirdObject.transform.position = birdStartPosition;
+
+        Debug.Log("After Bird position");
+
         PipeMove.moveSpeed = 14.5f;
+
+        Debug.Log("RESET COMPLETE");
     }
+
 
     /*
     IEnumerator FetchScoresFromServer()
