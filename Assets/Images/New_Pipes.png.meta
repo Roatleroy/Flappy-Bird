@@ -1,0 +1,1261 @@
+fileFormatVersion: 2
+guid: 6437825be0f91ee418c5a74e99e1f410
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2601174075190986987
+    second: New_Pipes_0
+  - first:
+      213: 4615377339763865905
+    second: New_Pipes_1
+  - first:
+      213: -1134512961911562806
+    second: New_Pipes_2
+  - first:
+      213: 8273829183412750626
+    second: New_Pipes_3
+  - first:
+      213: -5472269355142910584
+    second: New_Pipes_4
+  - first:
+      213: 2132639603161002695
+    second: New_Pipes_5
+  - first:
+      213: -4772171369345507339
+    second: New_Pipes_6
+  - first:
+      213: 7361792024689650316
+    second: New_Pipes_7
+  - first:
+      213: -1832219956307839974
+    second: New_Pipes_8
+  - first:
+      213: 1588256745776343922
+    second: New_Pipes_9
+  - first:
+      213: 7041340037647678606
+    second: New_Pipes_10
+  - first:
+      213: -1802700682457106139
+    second: New_Pipes_11
+  - first:
+      213: 278783733496622148
+    second: New_Pipes_12
+  - first:
+      213: -4361544446932150458
+    second: New_Pipes_13
+  - first:
+      213: 6942411349330892292
+    second: New_Pipes_14
+  - first:
+      213: -6800408563921667567
+    second: New_Pipes_15
+  - first:
+      213: -7973994948774149356
+    second: New_Pipes_16
+  - first:
+      213: 5773741650873573231
+    second: New_Pipes_17
+  - first:
+      213: -2674173667789143185
+    second: New_Pipes_18
+  - first:
+      213: 6158628609284921120
+    second: New_Pipes_19
+  - first:
+      213: 2006334692604618611
+    second: New_Pipes_20
+  - first:
+      213: 9223083333324641753
+    second: New_Pipes_21
+  - first:
+      213: -7879848864538564905
+    second: New_Pipes_22
+  - first:
+      213: 4857739524846950635
+    second: New_Pipes_23
+  - first:
+      213: -3668531850666870468
+    second: New_Pipes_24
+  - first:
+      213: -5772200789186961839
+    second: New_Pipes_25
+  - first:
+      213: 6628058705592847531
+    second: New_Pipes_26
+  - first:
+      213: 7663696546590034263
+    second: New_Pipes_27
+  - first:
+      213: -3543933743043496743
+    second: New_Pipes_28
+  - first:
+      213: 6020845807120764854
+    second: New_Pipes_29
+  - first:
+      213: -3611325621509632092
+    second: New_Pipes_30
+  - first:
+      213: -4131780079910255627
+    second: New_Pipes_31
+  - first:
+      213: -8714506470914749789
+    second: New_Pipes_32
+  - first:
+      213: 7982284194955950197
+    second: New_Pipes_33
+  - first:
+      213: 2650712255616811722
+    second: New_Pipes_34
+  - first:
+      213: -3268813229728998352
+    second: New_Pipes_35
+  - first:
+      213: -8004400329462172723
+    second: New_Pipes_36
+  - first:
+      213: 5667769235285322438
+    second: New_Pipes_37
+  - first:
+      213: -5783392932390424125
+    second: New_Pipes_38
+  - first:
+      213: -287362990069757326
+    second: New_Pipes_39
+  - first:
+      213: -1065372232992997672
+    second: New_Pipes_40
+  - first:
+      213: 741147419192189926
+    second: New_Pipes_41
+  - first:
+      213: -2396984073244570115
+    second: New_Pipes_42
+  - first:
+      213: 35799992727684639
+    second: New_Pipes_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: New_Pipes_0
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 897
+        width: 285
+        height: 639
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 4, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5173941d5f5c6ebd0800000000000000
+      internalID: -2601174075190986987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_1
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 1413
+        width: 69
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1393309bc3d1d0040800000000000000
+      internalID: 4615377339763865905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_2
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 1435
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acd5f28d8766140f0800000000000000
+      internalID: -1134512961911562806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_3
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1407
+        width: 39
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229c3914ecb82d270800000000000000
+      internalID: 8273829183412750626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_4
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1390
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d637bc3089e04b0800000000000000
+      internalID: -5472269355142910584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_5
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1385
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c2775c7b68a89d10800000000000000
+      internalID: 2132639603161002695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_6
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 1377
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ff1fd27c67d5cdb0800000000000000
+      internalID: -4772171369345507339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_7
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1365
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8a2eed87d65a2660800000000000000
+      internalID: 7361792024689650316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_8
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 1359
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a14b3e148a5a296e0800000000000000
+      internalID: -1832219956307839974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_9
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 1318
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27bed18681f9a0610800000000000000
+      internalID: 1588256745776343922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_10
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1311
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8cb9b6257dd7b160800000000000000
+      internalID: 7041340037647678606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_11
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 1287
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5293ac9c7458bf6e0800000000000000
+      internalID: -1802700682457106139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_12
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 1295
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c293c14507ed300800000000000000
+      internalID: 278783733496622148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_13
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 1239
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64718881f6ea873c0800000000000000
+      internalID: -4361544446932150458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_14
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1223
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4061289f656685060800000000000000
+      internalID: 6942411349330892292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_15
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1171
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11abce3f07810a1a0800000000000000
+      internalID: -6800408563921667567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_16
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1105
+        width: 19
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413ce8597dda65190800000000000000
+      internalID: -7973994948774149356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_17
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 1103
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6f523dd073702050800000000000000
+      internalID: 5773741650873573231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_18
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 1055
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6389bfa73d63ead0800000000000000
+      internalID: -2674173667789143185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_19
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 1039
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0275cff1718d77550800000000000000
+      internalID: 6158628609284921120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_20
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1029
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377ad3dd5cee7db10800000000000000
+      internalID: 2006334692604618611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_21
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 1007
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d514a8fc69feff70800000000000000
+      internalID: 9223083333324641753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_22
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 1005
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6e969f43725a290800000000000000
+      internalID: -7879848864538564905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_23
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 953
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be890e54c582a6340800000000000000
+      internalID: 4857739524846950635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_24
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 789
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c397bc1f7b1c61dc0800000000000000
+      internalID: -3668531850666870468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_25
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 789
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e1844f6f505efa0800000000000000
+      internalID: -5772200789186961839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_26
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 801
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac0c4996489bfb50800000000000000
+      internalID: 6628058705592847531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_27
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 799
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75903e5b76bea5a60800000000000000
+      internalID: 7663696546590034263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_28
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 767
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d43f5a890b61dec0800000000000000
+      internalID: -3543933743043496743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_29
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 759
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf45dc9c575e8350800000000000000
+      internalID: 6020845807120764854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_30
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 615
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4afc6a91b7ef1edc0800000000000000
+      internalID: -3611325621509632092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_31
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 0
+        width: 288
+        height: 660
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 2, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f30aee88e7f8a6c0800000000000000
+      internalID: -4131780079910255627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_32
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 415
+        width: 15
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa8840498adf0780800000000000000
+      internalID: -8714506470914749789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_33
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 307
+        width: 11
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5787090fe25c6ce60800000000000000
+      internalID: 7982284194955950197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_34
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 307
+        width: 11
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac280dd90c839c420800000000000000
+      internalID: 2650712255616811722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_35
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 183
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03cd7ecbfa7d2a2d0800000000000000
+      internalID: -3268813229728998352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_36
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 151
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc3336a3f48aae090800000000000000
+      internalID: -8004400329462172723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_37
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 129
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6caa1122716f7ae40800000000000000
+      internalID: 5667769235285322438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_38
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 127
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c13d5c05c24dbfa0800000000000000
+      internalID: -5783392932390424125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_39
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 85
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27a4c4f02e4130cf0800000000000000
+      internalID: -287362990069757326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_40
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 79
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8de33e249990731f0800000000000000
+      internalID: -1065372232992997672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_41
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 38
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3e527a6a5194a00800000000000000
+      internalID: 741147419192189926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_42
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 31
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd0df56fa33cbed0800000000000000
+      internalID: -2396984073244570115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_Pipes_43
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 15
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16ce7957ef2f7000800000000000000
+      internalID: 35799992727684639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0aff7fb260e0525448804c375b7bcf9d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      New_Pipes_0: -2601174075190986987
+      New_Pipes_1: 4615377339763865905
+      New_Pipes_10: 7041340037647678606
+      New_Pipes_11: -1802700682457106139
+      New_Pipes_12: 278783733496622148
+      New_Pipes_13: -4361544446932150458
+      New_Pipes_14: 6942411349330892292
+      New_Pipes_15: -6800408563921667567
+      New_Pipes_16: -7973994948774149356
+      New_Pipes_17: 5773741650873573231
+      New_Pipes_18: -2674173667789143185
+      New_Pipes_19: 6158628609284921120
+      New_Pipes_2: -1134512961911562806
+      New_Pipes_20: 2006334692604618611
+      New_Pipes_21: 9223083333324641753
+      New_Pipes_22: -7879848864538564905
+      New_Pipes_23: 4857739524846950635
+      New_Pipes_24: -3668531850666870468
+      New_Pipes_25: -5772200789186961839
+      New_Pipes_26: 6628058705592847531
+      New_Pipes_27: 7663696546590034263
+      New_Pipes_28: -3543933743043496743
+      New_Pipes_29: 6020845807120764854
+      New_Pipes_3: 8273829183412750626
+      New_Pipes_30: -3611325621509632092
+      New_Pipes_31: -4131780079910255627
+      New_Pipes_32: -8714506470914749789
+      New_Pipes_33: 7982284194955950197
+      New_Pipes_34: 2650712255616811722
+      New_Pipes_35: -3268813229728998352
+      New_Pipes_36: -8004400329462172723
+      New_Pipes_37: 5667769235285322438
+      New_Pipes_38: -5783392932390424125
+      New_Pipes_39: -287362990069757326
+      New_Pipes_4: -5472269355142910584
+      New_Pipes_40: -1065372232992997672
+      New_Pipes_41: 741147419192189926
+      New_Pipes_42: -2396984073244570115
+      New_Pipes_43: 35799992727684639
+      New_Pipes_5: 2132639603161002695
+      New_Pipes_6: -4772171369345507339
+      New_Pipes_7: 7361792024689650316
+      New_Pipes_8: -1832219956307839974
+      New_Pipes_9: 1588256745776343922
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

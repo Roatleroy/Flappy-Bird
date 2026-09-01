@@ -14,7 +14,7 @@ public class GroundMove : MonoBehaviour
 
         if (transform.position.x < deadzone)
         {
-            Debug.Log("Ground Cleared");
+            //Debug.Log("Ground Cleared");
             Destroy(gameObject);
         }
     }

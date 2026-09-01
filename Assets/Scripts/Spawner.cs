@@ -5,7 +5,7 @@ public class Spawner : MonoBehaviour
     public GameObject pipeSpawned;
     public GameObject pipe;
     public bool canSpawn = true;
-    public float heightOffset = 25;
+    public float heightOffset = 40;
     public float Gapsize;
     
 

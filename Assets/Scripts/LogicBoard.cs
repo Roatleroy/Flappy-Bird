@@ -1,16 +1,11 @@
 using Newtonsoft.Json;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
@@ -35,16 +30,18 @@ public class PlayerData
 public class EndData
 {
     public string unity_id;
-    public int score;
-    public int gold;
-    public int silver;
-    public int bronze;
+    public int score = 0;
+    public int gold = 0;
+    public int silver = 0;
+    public int bronze = 0;
 }
 
 public class LogicBoard : MonoBehaviour
 {
     public EndData end = new EndData();
     public int score;
+    public int prevScore = 0;
+
     public static int highestScore;
     public bool start = false;
 
@@ -117,6 +114,10 @@ public class LogicBoard : MonoBehaviour
     public Image myImageMany;
     public Image myImageTaken;
 
+
+    public GameObject ENDimage;
+    public GameObject EndButton;
+
     private Vector3 birdStartPosition;
 
     public Spawner value;
@@ -136,18 +137,19 @@ public class LogicBoard : MonoBehaviour
 
         string playerId = AuthenticationService.Instance.PlayerId;
 
-        //Debug.Log("Player ID: " + playerId);
+        Debug.Log("Player ID: " + playerId);
 
         end.unity_id = playerId;
         
         var response = await playerCheck.CheckPlayer(playerId);
 
-        end.score = response.score;
-
+        
         if (response != null)
         {
-            //Debug.Log(response.username);
-            //Debug.Log(response.score);
+            highestScore = response.score;
+            prevScore = response.score;
+            Debug.Log("Welcome: " + response.username);
+            Debug.Log("Score: " + response.score);
 
             startMenu();
         }
@@ -162,6 +164,51 @@ public class LogicBoard : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void EndAssistant()
+    {
+        spawn.SetActive(false);
+        playButton.SetActive(false);
+        LeaderBoardObject.SetActive(false);
+        logo.SetActive(false);
+        Score.SetActive(false);
+        ENDimage.SetActive(true); 
+        ScoreBoard.SetActive(false);
+        EndButton.SetActive(false);
+        
+        Bronze.SetActive(false);
+
+        Silver.SetActive(false);
+
+        Gold.SetActive(false); 
+        
+    }
+
+
+    public async void YesEnd()
+    {
+        if (end.score < prevScore && end.gold == 0 && end.silver == 0 && end.bronze == 0)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            if (await playerCheck.PostEnd(end))
+            {
+                Application.Quit();
+            }
+            else
+            {
+                Debug.Log("EndGame Post Failed");
+            }
+        }
+    }
+
+    public void NoEnd()
+    {
+        ENDimage.SetActive(false);
+        ResetScene();
     }
 
     public void Addition(int add)
@@ -179,6 +226,7 @@ public class LogicBoard : MonoBehaviour
         LeaderBoardObject.SetActive(false);
         logo.SetActive(false);
         Score.SetActive(true);
+        EndButton.SetActive(false);
         TRUF = true;
         value.canSpawn = true;
     }
@@ -217,6 +265,7 @@ public class LogicBoard : MonoBehaviour
         CreateUser.SetActive(false);
         playButton.SetActive(true);
         logo.SetActive(true);
+        EndButton.SetActive(true);
     }
 
     public void startLeaderBoard()
@@ -230,11 +279,12 @@ public class LogicBoard : MonoBehaviour
 
         Score.SetActive(false);
         ScoreBoard.SetActive(true);
+        EndButton.SetActive(true);
         Bird.enabled = false;
         highestScore = Mathf.Max(highestScore, score);
 
         //
-        end.score = Mathf.Max(highestScore, end.score);
+        end.score = Mathf.Max(highestScore, score);
         //
 
         BestScore.text = highestScore.ToString();
@@ -259,7 +309,7 @@ public class LogicBoard : MonoBehaviour
 
     public void ResetScene()
     { 
-        Debug.Log("RESET START");
+        //Debug.Log("RESET START");
 
         playButton.SetActive(true);
         LeaderBoardObject.SetActive(false);
@@ -283,28 +333,28 @@ public class LogicBoard : MonoBehaviour
             BackMove.enabled = true;
         }
 
-        Debug.Log("Before ground spawn");
+       // Debug.Log("Before ground spawn");
 
         Bird.groundSpawn.enabled = true;
 
-        Debug.Log("After ground spawn");
+        //Debug.Log("After ground spawn");
 
         score = 0;
         scoreText.text = score.ToString();
 
-        Debug.Log("After score");
+       // Debug.Log("After score");
 
         Bird.enabled = true;
 
-        Debug.Log("After Bird");
+        //Debug.Log("After Bird");
 
         BirdObject.transform.position = birdStartPosition;
 
-        Debug.Log("After Bird position");
+        //Debug.Log("After Bird position");
 
         PipeMove.moveSpeed = 14.5f;
 
-        Debug.Log("RESET COMPLETE");
+        //Debug.Log("RESET COMPLETE");
     }
 
 

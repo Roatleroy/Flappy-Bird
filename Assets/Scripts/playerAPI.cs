@@ -14,7 +14,6 @@ using System.Text.Json.Serialization;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,6 +24,7 @@ public class PlayerAPI : MonoBehaviour
     public LogicBoard playerPost;
     private string apiUrl = "https://localhost:7130/api/game/player/";
     private string postUrl = "https://localhost:7130/api/game/PostPlayer";
+    private string postEnd = "https://localhost:7130/api/game/PostEnd";
     private string userUrl = "https://localhost:7130/api/game/username/";
     private string GetserverUrl = "https://localhost:7130/api/game/scores";
 
@@ -58,6 +58,7 @@ public class PlayerAPI : MonoBehaviour
 
     public async Task<PlayerData> CheckPlayer(string playerId)
     { 
+        Debug.Log("Player Checked: " +  playerId);
         using (UnityWebRequest request = new UnityWebRequest(apiUrl + playerId, "GET"))
         {
 
@@ -76,6 +77,7 @@ public class PlayerAPI : MonoBehaviour
             }
             else if (request.responseCode == 404)
             {
+                Debug.Log("Check Returned NULL");
                 return null;
             }
             else
@@ -107,7 +109,7 @@ public class PlayerAPI : MonoBehaviour
            }
            else
            {
-                Debug.LogError(
+                Console.WriteLine(
                     "Status: " + request.responseCode +
                     "\nError: " + request.error +
                     "\nServer Response: " + request.downloadHandler.text
@@ -143,6 +145,40 @@ public class PlayerAPI : MonoBehaviour
                 return true;
             }
 
+            Console.WriteLine(
+                   "Status: " + request.responseCode +
+                   "\nError: " + request.error +
+                   "\nServer Response: " + request.downloadHandler.text
+               );
+
+            return false;
+        }
+    }
+
+    public async Task<bool> PostEnd(EndData endata)
+    {
+
+        string json = JsonUtility.ToJson(endata);
+        Debug.Log("JSON being sent: " + json);
+
+        byte[] body = Encoding.UTF8.GetBytes(json);
+
+
+        using (UnityWebRequest request = new UnityWebRequest(postEnd, "POST"))
+        {
+
+            request.uploadHandler = new UploadHandlerRaw(body);
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            await request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                return true;
+            }
+
             Debug.LogError(
                    "Status: " + request.responseCode +
                    "\nError: " + request.error +
@@ -162,13 +198,13 @@ public class PlayerAPI : MonoBehaviour
             // Crucial for testing: allows Unity to trust Visual Studio's local SSL certificate
             webRequest.certificateHandler = new BypassCertificateHandler();
 
-            Debug.Log("Pinging the game server...");
+            Console.WriteLine("Pinging the game server...");
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
                 string jsonResult = webRequest.downloadHandler.text;
-                Debug.Log("Successfully fetched data from server: " + jsonResult);
+                Console.WriteLine("Successfully fetched data from server: " + jsonResult);
 
                 // Next, you will parse this jsonResult to update your UI!
                 var dict = JsonConvert.DeserializeObject<Dictionary<string, PlayerStats>>(jsonResult);
@@ -230,7 +266,7 @@ public class PlayerAPI : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Server Connection Failed: " + webRequest.error);
+                Console.WriteLine("Server Connection Failed: " + webRequest.error);
             }
         }
     }
