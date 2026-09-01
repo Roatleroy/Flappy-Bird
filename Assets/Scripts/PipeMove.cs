@@ -3,7 +3,7 @@ using UnityEngine;
 public class PipeMove : MonoBehaviour
 {
     public static float moveSpeed = 14.5f;
-    public float speedIncrease = 0.02f;
+    public float speedIncrease = 0.025f;
     public float deadzone = -65f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
