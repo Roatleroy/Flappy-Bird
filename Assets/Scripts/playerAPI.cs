@@ -22,11 +22,11 @@ public class PlayerAPI : MonoBehaviour
 {
     public LogicBoard playerData;
     public LogicBoard playerPost;
-    private string apiUrl = "https://localhost:7130/api/game/player/";
-    private string postUrl = "https://localhost:7130/api/game/PostPlayer";
-    private string postEnd = "https://localhost:7130/api/game/PostEnd";
-    private string userUrl = "https://localhost:7130/api/game/username/";
-    private string GetserverUrl = "https://localhost:7130/api/game/scores";
+    private string apiUrl = "https://flappyappi-gqfdhwhvbwhkbkgh.centralus-01.azurewebsites.net/api/game/player/";
+    private string postUrl = "https://flappyappi-gqfdhwhvbwhkbkgh.centralus-01.azurewebsites.net/api/game/PostPlayer";
+    private string postEnd = "https://flappyappi-gqfdhwhvbwhkbkgh.centralus-01.azurewebsites.net/api/game/PostEnd";
+    private string userUrl = "https://flappyappi-gqfdhwhvbwhkbkgh.centralus-01.azurewebsites.net/api/game/username/";
+    private string GetserverUrl = "https://flappyappi-gqfdhwhvbwhkbkgh.centralus-01.azurewebsites.net/api/game/scores";
 
     //-------------------- Json Variable Key:Value(Struct) Object
     [System.Serializable]
