@@ -38,7 +38,7 @@ public class BirdCode : MonoBehaviour
             tiltUpTimer = tiltUpDuration;
             FLAP.Play();
         }
-        if (logicBoard.TRUF == false && transform.position.y <= 0f)
+        if (logicBoard.TRUF == false && transform.position.y <= 0f && groundSpawn.enabled == true)
         {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
             tiltUpTimer = tiltUpDuration;
@@ -91,6 +91,7 @@ public class BirdCode : MonoBehaviour
             }
 
             groundSpawn.enabled = false;
+            logicBoard.TRUF = false;
 
         }
         if (Collision.gameObject.CompareTag("Floor"))
