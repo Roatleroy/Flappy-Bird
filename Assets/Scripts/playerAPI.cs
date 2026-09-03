@@ -48,7 +48,11 @@ public class PlayerAPI : MonoBehaviour
     public List<LeaderboardEntry> leaderboard = new List<LeaderboardEntry>();
 
     //----- Game Object for LeaderBoard Username Spawning
-    public GameObject textMeshPrefab;
+    public GameObject textMeshPrefabFirst;
+    public GameObject textMeshPrefabSecond;
+    public GameObject textMeshPrefabThird;
+    public GameObject textMeshPrefabOther;
+
     public Transform uiContentContainer;
 
     public TextMeshProUGUI First_Place;
@@ -223,45 +227,43 @@ public class PlayerAPI : MonoBehaviour
                     }
                 }
 
-                switch (leaderboard.Count)
+                for (int i = 0; i < leaderboard.Count; i++)
                 {
-                    case 0:
-                        break;
-                    case 1:
-                        First_Place.text = leaderboard[0].playerName;
-                        break;
-                    case 2:
-                        First_Place.text = leaderboard[0].playerName;
-                        Second_Place.text = leaderboard[1].playerName;
-                        break;
-                    case 3:
-                        First_Place.text = leaderboard[0].playerName;
-                        Second_Place.text = leaderboard[1].playerName;
-                        Third_Place.text = leaderboard[2].playerName;
-                        break;
-                    default:
-                        First_Place.text = leaderboard[0].playerName;
-                        Second_Place.text = leaderboard[1].playerName;
-                        Third_Place.text = leaderboard[2].playerName;
-                        for (int i = 3; i < leaderboard.Count; i++)
-                        {
-                            LeaderboardEntry entry = leaderboard[i];
+                    LeaderboardEntry entry = leaderboard[i];
+                    GameObject TextRow;
 
-                            GameObject TextRow = Instantiate(textMeshPrefab, uiContentContainer);
+                    if (i == 0)
+                    {
+                        TextRow = Instantiate(textMeshPrefabFirst, uiContentContainer);
+                    }
+                    else if (i == 1)
+                    {
+                        TextRow = Instantiate(textMeshPrefabSecond, uiContentContainer);
+                    }
+                    else if (i == 2)
+                    {
+                       TextRow = Instantiate(textMeshPrefabThird, uiContentContainer);
+                    }
+                    else
+                    {
+                        TextRow = Instantiate(textMeshPrefabOther, uiContentContainer);
+                    }
 
-                            TextMeshProUGUI nameText = TextRow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-                            TextMeshProUGUI scoreText = TextRow.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-                            TextMeshProUGUI medalText = TextRow.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI NameText = TextRow.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                    TextMeshProUGUI ScoreText = TextRow.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
 
-                            nameText.text = entry.playerName;
-                            scoreText.text = entry.stats.score.ToString();
+                    NameText.text = entry.playerName;
+                    ScoreText.text = entry.stats.score.ToString();
 
-                            // Optional: Combine gold, silver, and bronze into the third medal column
-                            medalText.text = $"{entry.stats.gold}   {entry.stats.silver}   {entry.stats.bronze}";
-                        }
-                        break;
+                    if (i > 2)
+                    {
+                        TextMeshProUGUI RankText = TextRow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                        RankText.text = (i+1).ToString();
+                    }
 
+                    // Optional: Combine gold, silver, and bronze into the third medal column
+                    //medalText.text = $"{entry.stats.gold}   {entry.stats.silver}   {entry.stats.bronze}";
                 }
             }
             else
