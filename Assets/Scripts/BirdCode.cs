@@ -8,7 +8,7 @@ public class BirdCode : MonoBehaviour
     //----------------------------  Bird Physics
     public Rigidbody2D myRigidbody;
     public float flapStrength;
-    float targetRotation = -85f;
+    float targetRotation;
     public float rotationSpeedDown;
     public float rotationSpeedUp;
   
@@ -43,6 +43,7 @@ public class BirdCode : MonoBehaviour
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
             tiltUpTimer = tiltUpDuration;
         }
+
 
         tiltUpTimer -= Time.deltaTime;
 

@@ -74,6 +74,8 @@ public class LogicBoard : MonoBehaviour
     public GameObject Gold;
     public GameObject Silver;
     public GameObject Bronze;
+
+    public GameObject BackGround;
 /*
     //-------------------- Json Variable Key:Value(Struct) Object
  
@@ -155,6 +157,7 @@ public class LogicBoard : MonoBehaviour
         }
         else
         {
+            CreateUser.SetActive(true);
             newPlayer.Unity_ID = playerId;
             Debug.Log("Player Doesn't Exist Yet");
         }
@@ -215,6 +218,39 @@ public class LogicBoard : MonoBehaviour
     {
         score += add;
         scoreText.text = score.ToString();
+
+        if (score == 25)
+        {
+            foreach (BackGroundMove BackMove in FindObjectsByType<BackGroundMove>())
+            {
+                
+                Transform childTransform = BackMove.transform.Find("Daytime");
+                Transform childTransform2 = BackMove.transform.Find("Nightime");
+
+                if (childTransform != null && childTransform2 != null)
+                {
+                 
+                    childTransform.gameObject.SetActive(false);
+                    childTransform2.gameObject.SetActive(true);
+                }
+            }
+        }
+        if (score == 50)
+        {
+            foreach (BackGroundMove BackMove in FindObjectsByType<BackGroundMove>())
+            {
+
+                Transform childTransform = BackMove.transform.Find("Daytime");
+                Transform childTransform2 = BackMove.transform.Find("Nightime");
+
+                if (childTransform != null && childTransform2 != null)
+                {
+
+                    childTransform.gameObject.SetActive(true);
+                    childTransform2.gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
     // When the Game starts up for the first time and user hits play it starts the game
@@ -270,6 +306,7 @@ public class LogicBoard : MonoBehaviour
 
     public void startLeaderBoard()
     {
+        StartCoroutine(playerCheck.FetchScoresFromServer());
         LeaderBoardObject.SetActive(true);
     }
 
@@ -308,9 +345,12 @@ public class LogicBoard : MonoBehaviour
     }
 
     public void ResetScene()
-    { 
+    {
         //Debug.Log("RESET START");
 
+        Bronze.SetActive(false);
+        Silver.SetActive(false);
+        Gold.SetActive(false);
         playButton.SetActive(true);
         LeaderBoardObject.SetActive(false);
         Score.SetActive(false);
@@ -331,9 +371,18 @@ public class LogicBoard : MonoBehaviour
         foreach (BackGroundMove BackMove in FindObjectsByType<BackGroundMove>())
         {
             BackMove.enabled = true;
+            Transform childTransform = BackMove.transform.Find("Daytime");
+            Transform childTransform2 = BackMove.transform.Find("Nightime");
+
+            if (childTransform != null && childTransform2 != null)
+            {
+
+                childTransform.gameObject.SetActive(true);
+                childTransform2.gameObject.SetActive(false);
+            }
         }
 
-       // Debug.Log("Before ground spawn");
+        // Debug.Log("Before ground spawn");
 
         Bird.groundSpawn.enabled = true;
 
@@ -350,9 +399,13 @@ public class LogicBoard : MonoBehaviour
 
         BirdObject.transform.position = birdStartPosition;
 
+        Debug.Log(transform.position);
+        // Output in Console: (1.2, 3.4, 0.0)
+
+
         //Debug.Log("After Bird position");
 
-        PipeMove.moveSpeed = 14.5f;
+        PipeMove.moveSpeed = 15f;
 
         //Debug.Log("RESET COMPLETE");
     }
