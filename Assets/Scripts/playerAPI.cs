@@ -18,6 +18,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+// Sends Get and Post requests to postGres API
 public class PlayerAPI : MonoBehaviour
 {
     public LogicBoard playerData;
@@ -60,6 +62,8 @@ public class PlayerAPI : MonoBehaviour
     public TextMeshProUGUI Third_Place;
 
 
+    // Sends data to Database API to check if player exists in the database from UNITY'S created ID
+    // If Exists return true else false
     public async Task<PlayerData> CheckPlayer(string playerId)
     { 
         Debug.Log("Player Checked: " +  playerId);
@@ -97,6 +101,8 @@ public class PlayerAPI : MonoBehaviour
     }
 
 
+    //Create user screen unlocked and checks if username exists in the database already
+    // Makes sure no duplicate usernames
     public async Task<bool> CheckUsername(string username)
     {
         using (UnityWebRequest request = new UnityWebRequest(userUrl + username, "GET"))
@@ -125,6 +131,8 @@ public class PlayerAPI : MonoBehaviour
     }
 
 
+    // When user creates new player if its not illegal or player name doesn't already exist
+    // Then post new player to database. 
     public async Task<bool> PostPlayer(PlayerCreate playerId)
     {
 
@@ -159,6 +167,8 @@ public class PlayerAPI : MonoBehaviour
         }
     }
 
+    // When user interacts with Leaderboard or exits the game post highest score
+    // and the amount of medals they've scored
     public async Task<bool> PostEnd(EndData endata)
     {
 
@@ -193,13 +203,12 @@ public class PlayerAPI : MonoBehaviour
         }
     }
 
-    // LeaderBoard API Code
-
+    // Fetches user data information from database
     public IEnumerator FetchScoresFromServer()
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(GetserverUrl))
         {
-            // Crucial for testing: allows Unity to trust Visual Studio's local SSL certificate
+            // allows Unity to trust Visual Studio's local SSL certificate
             webRequest.certificateHandler = new BypassCertificateHandler();
 
             Console.WriteLine("Pinging the game server...");
@@ -210,7 +219,7 @@ public class PlayerAPI : MonoBehaviour
                 string jsonResult = webRequest.downloadHandler.text;
                 Console.WriteLine("Successfully fetched data from server: " + jsonResult);
 
-                // Next, you will parse this jsonResult to update your UI!
+                // parse jsonResult to update UI
                 var dict = JsonConvert.DeserializeObject<Dictionary<string, PlayerStats>>(jsonResult);
 
                 leaderboard.Clear();

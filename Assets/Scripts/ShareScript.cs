@@ -4,6 +4,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+
+// import windows dll to talk to WinAPI so when share button is pressed
+// Share screen opens with screenshot of score. 
 public class WindowsShareUI : MonoBehaviour
 {
     [DllImport(
@@ -33,6 +36,7 @@ public class WindowsShareUI : MonoBehaviour
 
 #endif
     }
+
 
     private IEnumerator CaptureAndShareRoutine()
     {
@@ -70,7 +74,7 @@ public class WindowsShareUI : MonoBehaviour
         // Give the file system a moment to finish writing.
         yield return new WaitForSeconds(0.2f);
 
-        // Call our C++ Windows DLL.
+        // Call C++ Windows DLL.
         int result = ShowWindowsShare(
             temporaryFilePath,
             "My Flappy Bird High Score!"

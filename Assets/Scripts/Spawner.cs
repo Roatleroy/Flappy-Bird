@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+// Spawns(Instantiate) pipe object when a certain distance has been met
 public class Spawner : MonoBehaviour
 {
     public GameObject pipeSpawned;
@@ -9,7 +11,7 @@ public class Spawner : MonoBehaviour
     public float Gapsize;
     
 
-    // Update is called once per frame
+    //if pipes spawned script determines if the distance is right. canSpawn is set to true. Pipe spawns. 
     void Update()
     {
         if (canSpawn)
@@ -27,6 +29,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    // set random y axis value and spawn pipe object
     void spawnPipe()
     {
         float lowestPoint = -heightOffset;

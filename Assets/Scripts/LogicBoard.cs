@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.Services.Authentication;
@@ -13,6 +14,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
+//
 [System.Serializable]
 public class PlayerCreate
 {
@@ -36,6 +38,8 @@ public class EndData
     public int bronze = 0;
 }
 
+
+// Functions other scripts use and beginning functions to get values to dynamically change with user input
 public class LogicBoard : MonoBehaviour
 {
     public EndData end = new EndData();
@@ -76,36 +80,6 @@ public class LogicBoard : MonoBehaviour
     public GameObject Bronze;
 
     public GameObject BackGround;
-/*
-    //-------------------- Json Variable Key:Value(Struct) Object
- 
-    [System.Serializable]
-    public class PlayerStats
-    {
-        public int score;
-        public int gold;
-        public int silver;
-        public int bronze;
-    }
-    [System.Serializable]
-    public class LeaderboardEntry
-    {
-        public string playerName;
-        public PlayerStats stats;
-    }
-
-    public List<LeaderboardEntry> leaderboard = new List<LeaderboardEntry>();
-
-    //----- Game Object for LeaderBoard Username Spawning
-    public GameObject textMeshPrefab;
-    public Transform uiContentContainer;
-
-    public TextMeshProUGUI First_Place;
-    public TextMeshProUGUI Second_Place;
-    public TextMeshProUGUI Third_Place;
-
-    private string GetserverUrl = "https://localhost:7130/api/game/scores";
-    */
 
     public PlayerCreate newPlayer = new PlayerCreate();
    
@@ -124,6 +98,11 @@ public class LogicBoard : MonoBehaviour
 
     public Spawner value;
 
+
+    // Gather initial bird position for reset function. 
+    // Get 100 rows of user data in POSTGRES database
+    // Use Unities Authentication to Grab unique code for that specific users version of the Game
+    // If user already exists when unity checks the cloud continue with game ELSE create new user.
     private async void Awake()
     {
         birdStartPosition = BirdObject.transform.position;
@@ -164,11 +143,7 @@ public class LogicBoard : MonoBehaviour
         
     }
 
-    void Start()
-    {
-        
-    }
-
+    // When user pressed the EXIT BUTTON turns off every object that could possibly be on. 
     public void EndAssistant()
     {
         spawn.SetActive(false);
@@ -189,6 +164,7 @@ public class LogicBoard : MonoBehaviour
     }
 
 
+    // When user presses Yes button post score and close game. Linked to Game Object
     public async void YesEnd()
     {
         if (end.score < prevScore && end.gold == 0 && end.silver == 0 && end.bronze == 0)
@@ -208,12 +184,16 @@ public class LogicBoard : MonoBehaviour
         }
     }
 
+    // When user presses NO button it resets the scene back to the main menu
     public void NoEnd()
     {
         ENDimage.SetActive(false);
         ResetScene();
     }
 
+
+    // Every time the bird object goes through the score object add one to the score
+    // If Score is 50 change background to nightime background
     public void Addition(int add)
     {
         score += add;
@@ -267,7 +247,10 @@ public class LogicBoard : MonoBehaviour
         value.canSpawn = true;
     }
 
-
+    // Function called by branch when Unity cache can't find user session
+    // Call create user function is PlayerAPI script to post UNITY_ID
+    // User name has to be under 16 characters and over 1 character long and must not already exist
+    // If those conditions are met display error messages. 
     public async void createUser()
     {
         string username = usernameText.text;
@@ -296,6 +279,10 @@ public class LogicBoard : MonoBehaviour
             usernameText.text = "";
         }
     }
+
+    // When user successfully creates a new use -> start game menu.
+    // Reason not using reset scene is because those call background
+    // objects that are not yet created and will cause null error
     public void startMenu()
     {
         CreateUser.SetActive(false);
@@ -304,13 +291,17 @@ public class LogicBoard : MonoBehaviour
         EndButton.SetActive(true);
     }
 
+
+    // Grab user data to get current leadboard stats just in case user got a better score
+    // turn on leaderboard game object and display leaderboard. 
     public void startLeaderBoard()
     {
         StartCoroutine(playerCheck.FetchScoresFromServer());
         LeaderBoardObject.SetActive(true);
     }
 
-    // This takes the input from BirdCode, when bird collides with collider it puts the end game menu on
+    // This takes the input from BirdCode, when bird collides with collider it turns on end game menu
+    // Depending on score displays Bronze, Silver, or Gold Sprite. 
     public void endGameMenu()
     {
 
@@ -344,6 +335,10 @@ public class LogicBoard : MonoBehaviour
         }
     }
 
+    // Turns menu back on and resets scene by turning off all other possible game objects
+    // and turning on Main MENU objects and restarting the background objects to start moving and spawning again. 
+    // Kill Pipes and to start spawning from beginning position again. 
+    // Returns bird object back to X=0, reset pipe move speed to beginning speed. 
     public void ResetScene()
     {
         //Debug.Log("RESET START");
@@ -409,93 +404,4 @@ public class LogicBoard : MonoBehaviour
 
         //Debug.Log("RESET COMPLETE");
     }
-
-
-    /*
-    IEnumerator FetchScoresFromServer()
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(GetserverUrl))
-        {
-            // Crucial for testing: allows Unity to trust Visual Studio's local SSL certificate
-            webRequest.certificateHandler = new BypassCertificateHandler();
-
-            Debug.Log("Pinging the game server...");
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result == UnityWebRequest.Result.Success)
-            {
-                string jsonResult = webRequest.downloadHandler.text;
-                Debug.Log("Successfully fetched data from server: " + jsonResult);
-
-                // Next, you will parse this jsonResult to update your UI!
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, PlayerStats>>(jsonResult);
-
-                leaderboard.Clear();
-                foreach (Transform child in uiContentContainer)
-                {
-                    Destroy(child.gameObject);
-                }
-
-                if (dict != null)
-                {
-                    foreach (var kvp in dict)
-                    {
-                        leaderboard.Add(new LeaderboardEntry { playerName = kvp.Key, stats = kvp.Value });
-                    }
-                }
-
-                switch(leaderboard.Count)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        First_Place.text = leaderboard[0].playerName;
-                        break;
-                    case 2:
-                        First_Place.text = leaderboard[0].playerName;
-                        Second_Place.text = leaderboard[1].playerName;
-                        break;
-                    case 3:
-                        First_Place.text = leaderboard[0].playerName;
-                        Second_Place.text = leaderboard[1].playerName;
-                        Third_Place.text = leaderboard[2].playerName;
-                        break;
-                    default:
-                        First_Place.text = leaderboard[0].playerName;
-                        Second_Place.text = leaderboard[1].playerName;
-                        Third_Place.text = leaderboard[2].playerName;
-                        for (int i = 3; i < leaderboard.Count; i++)
-                        {
-                            LeaderboardEntry entry = leaderboard[i];
-
-                            GameObject TextRow = Instantiate(textMeshPrefab, uiContentContainer);
-
-                            TextMeshProUGUI nameText = TextRow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-                            TextMeshProUGUI scoreText = TextRow.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-                            TextMeshProUGUI medalText = TextRow.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-
-
-                            nameText.text = entry.playerName;
-                            scoreText.text = entry.stats.score.ToString();
-
-                            // Optional: Combine gold, silver, and bronze into the third medal column
-                            medalText.text = $"{entry.stats.gold}   {entry.stats.silver}   {entry.stats.bronze}";
-                        }
-                        break;
-
-                }
-            }
-            else
-            {
-                Debug.LogError("Server Connection Failed: " + webRequest.error);
-            }
-        }
-    }
-
-    // Helper class so Unity doesn't block local development certificates
-    public class BypassCertificateHandler : CertificateHandler
-    {
-        protected override bool ValidateCertificate(byte[] certificateData) => true;
-    }
-    */
 }

@@ -2,17 +2,11 @@ using UnityEngine;
 
 public class BackGroundMove : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   
+    
+   // This value tells when background object is supposed to be despawned
     private float deadzone = -100f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    //When a background object is spawned every frame move it X amount
     void Update()
     {
         transform.position += Vector3.left * ((PipeMove.moveSpeed / 6) * Time.deltaTime);
