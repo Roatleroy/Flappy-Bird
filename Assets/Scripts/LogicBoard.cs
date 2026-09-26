@@ -56,6 +56,8 @@ public class LogicBoard : MonoBehaviour
     // Highest Score of all runs on endGame screen
     public Text BestScore;
 
+    public Text PublicName;
+
 
     public GameObject Score;
     public bool TRUF = false;
@@ -131,6 +133,8 @@ public class LogicBoard : MonoBehaviour
             prevScore = response.score;
             Debug.Log("Welcome: " + response.username);
             Debug.Log("Score: " + response.score);
+
+            PublicName.text = response.username;
 
             startMenu();
         }
@@ -245,6 +249,9 @@ public class LogicBoard : MonoBehaviour
         EndButton.SetActive(false);
         TRUF = true;
         value.canSpawn = true;
+
+        PublicName.rectTransform.anchoredPosition = new Vector2(150, 1520);
+        PublicName.alignment = TextAnchor.MiddleRight;
     }
 
     // Function called by branch when Unity cache can't find user session
@@ -333,6 +340,10 @@ public class LogicBoard : MonoBehaviour
             Gold.SetActive(true);
             end.gold += 1;
         }
+
+
+        PublicName.alignment = TextAnchor.MiddleLeft;
+        PublicName.rectTransform.anchoredPosition = new Vector2(-150, 1520);
     }
 
     // Turns menu back on and resets scene by turning off all other possible game objects
@@ -403,5 +414,8 @@ public class LogicBoard : MonoBehaviour
         PipeMove.moveSpeed = 15f;
 
         //Debug.Log("RESET COMPLETE");
+
+        PublicName.rectTransform.anchoredPosition = new Vector2(-150, 1520);
+        PublicName.alignment = TextAnchor.MiddleLeft;
     }
 }
