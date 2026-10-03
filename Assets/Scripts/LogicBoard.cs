@@ -12,6 +12,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Audio.ProcessorInstance;
 
 
 //
@@ -24,8 +25,8 @@ public class PlayerCreate
 [System.Serializable]
 public class PlayerData
 {
-    public string username;
-    public int score;
+    public string username = "offline";
+    public int score = 0;
 }
 
 [System.Serializable]
@@ -47,7 +48,8 @@ public class LogicBoard : MonoBehaviour
     public int prevScore = 0;
 
     public static int highestScore;
-    public bool start = false;
+
+    //public bool start = false;
 
     // Text on the scoreboard of the running game
     public Text scoreText;
@@ -67,13 +69,17 @@ public class LogicBoard : MonoBehaviour
     //-------------------- This a reference to the PipeSpawner game object
     public GameObject spawn;
     //----------------------- Play Menu
+    public GameObject Menu;
     public GameObject playButton;
-    public GameObject LeaderBoardObject;
-    public GameObject logo;
+    public GameObject LeaderBoard;
+    public GameObject LeaderBoardButton;
+
     //----------------------- End Menu
-    public GameObject restartButton;
+    //public GameObject restartButton;
     public GameObject ScoreBoard;
-    public GameObject highScore;
+    public Image targetImage;
+    public Sprite newSprite;
+    public GameObject LargestScore;
     public GameObject regularScore;
     // Rating Objects
     
@@ -81,7 +87,7 @@ public class LogicBoard : MonoBehaviour
     public GameObject Silver;
     public GameObject Bronze;
 
-    public GameObject BackGround;
+    //public GameObject BackGround;
 
     public PlayerCreate newPlayer = new PlayerCreate();
    
@@ -101,68 +107,92 @@ public class LogicBoard : MonoBehaviour
     public Spawner value;
 
 
+    public Boolean offlineMode = false;
+    public GameObject PlayOfflineButton;
+
+
     // Gather initial bird position for reset function. 
     // Get 100 rows of user data in POSTGRES database
     // Use Unities Authentication to Grab unique code for that specific users version of the Game
     // If user already exists when unity checks the cloud continue with game ELSE create new user.
-    private async void Awake()
+    private async void Start()
     {
         birdStartPosition = BirdObject.transform.position;
 
-        StartCoroutine(playerCheck.FetchScoresFromServer());
-
-        await UnityServices.InitializeAsync();
-
-        if (!AuthenticationService.Instance.IsSignedIn)
+        try
         {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            await UnityServices.InitializeAsync();
+
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
+
+            string playerId = AuthenticationService.Instance.PlayerId;
+
+            Debug.Log("Player ID: " + playerId);
+
+            end.unity_id = playerId;
+
+            var response = await playerCheck.CheckPlayer(playerId);
+
+            if (response != null)
+            {
+                highestScore = response.score;
+                prevScore = response.score;
+                Debug.Log("Welcome: " + response.username);
+                Debug.Log("Score: " + response.score);
+
+                PublicName.text = response.username;
+
+                startMenu();
+            }
+            else
+            {
+                CreateUser.SetActive(true);
+                newPlayer.Unity_ID = playerId;
+                Debug.Log("Player Doesn't Exist Yet");
+            }
+
+            StartCoroutine(playerCheck.FetchScoresFromServer());
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Initialization/Sign-in failed: {e.Message}");
+            PlayOfflineButton.SetActive(true);
+            PublicName.text = "OFFlineMode";
         }
 
-        string playerId = AuthenticationService.Instance.PlayerId;
+    }
 
-        Debug.Log("Player ID: " + playerId);
+    public void offlineStart()
+    {
+        offlineMode = true;
+        SwapImage();
+        startMenu();
+    }
 
-        end.unity_id = playerId;
-        
-        var response = await playerCheck.CheckPlayer(playerId);
-
-        
-        if (response != null)
+    public void SwapImage()
+    {
+        if (targetImage != null && newSprite != null)
         {
-            highestScore = response.score;
-            prevScore = response.score;
-            Debug.Log("Welcome: " + response.username);
-            Debug.Log("Score: " + response.score);
-
-            PublicName.text = response.username;
-
-            startMenu();
+            // This changes the "Source Image" parameter
+            targetImage.sprite = newSprite;
         }
-        else
-        {
-            CreateUser.SetActive(true);
-            newPlayer.Unity_ID = playerId;
-            Debug.Log("Player Doesn't Exist Yet");
-        }
-        
     }
 
     // When user pressed the EXIT BUTTON turns off every object that could possibly be on. 
     public void EndAssistant()
     {
         spawn.SetActive(false);
-        playButton.SetActive(false);
-        LeaderBoardObject.SetActive(false);
-        logo.SetActive(false);
+        Menu.SetActive(false);
         Score.SetActive(false);
         ENDimage.SetActive(true); 
         ScoreBoard.SetActive(false);
         EndButton.SetActive(false);
         
         Bronze.SetActive(false);
-
         Silver.SetActive(false);
-
         Gold.SetActive(false); 
         
     }
@@ -242,9 +272,8 @@ public class LogicBoard : MonoBehaviour
     public void startGame() {
 
         spawn.SetActive(true);
-        playButton.SetActive(false);
-        LeaderBoardObject.SetActive(false);
-        logo.SetActive(false);
+        Menu.SetActive(false);
+        LeaderBoard.SetActive(false);
         Score.SetActive(true);
         EndButton.SetActive(false);
         TRUF = true;
@@ -292,10 +321,26 @@ public class LogicBoard : MonoBehaviour
     // objects that are not yet created and will cause null error
     public void startMenu()
     {
-        CreateUser.SetActive(false);
-        playButton.SetActive(true);
-        logo.SetActive(true);
-        EndButton.SetActive(true);
+        if (offlineMode)
+        {
+            Menu.SetActive(true);
+            LeaderBoardButton.SetActive(false);
+            EndButton.SetActive(true);
+            PlayOfflineButton.SetActive(false);
+
+            RectTransform buttonRect = playButton.GetComponent<RectTransform>();
+            if (buttonRect != null)
+            {
+                // 2. Move it to an absolute coordinate on the canvas (X: 200, Y: -150)
+                buttonRect.anchoredPosition = new Vector2(0, -80);
+            }
+        }
+        else
+        {
+            CreateUser.SetActive(false);
+            Menu.SetActive(true);
+            EndButton.SetActive(true);
+        }
     }
 
 
@@ -304,7 +349,7 @@ public class LogicBoard : MonoBehaviour
     public void startLeaderBoard()
     {
         StartCoroutine(playerCheck.FetchScoresFromServer());
-        LeaderBoardObject.SetActive(true);
+        LeaderBoard.SetActive(true);
     }
 
     // This takes the input from BirdCode, when bird collides with collider it turns on end game menu
@@ -315,6 +360,24 @@ public class LogicBoard : MonoBehaviour
         Score.SetActive(false);
         ScoreBoard.SetActive(true);
         EndButton.SetActive(true);
+
+        if (offlineMode)
+        {
+            LargestScore.SetActive(false);
+            RectTransform rectTransform = regularScore.GetComponent<RectTransform>();
+
+            if (rectTransform != null)
+            {
+                rectTransform.sizeDelta = new Vector2(642, 315);
+                rectTransform.anchoredPosition = new Vector2(551, -52);
+            }
+            if (EndButton != null)
+            {
+                EndScore.fontSize = 300;
+            }
+            
+        }
+
         Bird.enabled = false;
         highestScore = Mathf.Max(highestScore, score);
 
@@ -341,7 +404,6 @@ public class LogicBoard : MonoBehaviour
             end.gold += 1;
         }
 
-
         PublicName.alignment = TextAnchor.MiddleLeft;
         PublicName.rectTransform.anchoredPosition = new Vector2(-150, 1520);
     }
@@ -357,11 +419,15 @@ public class LogicBoard : MonoBehaviour
         Bronze.SetActive(false);
         Silver.SetActive(false);
         Gold.SetActive(false);
+
+        Menu.SetActive(true);
+        LeaderBoardButton.SetActive(true);
         playButton.SetActive(true);
-        LeaderBoardObject.SetActive(false);
+        LeaderBoard.SetActive(false);
         Score.SetActive(false);
-        TRUF = false;
         ScoreBoard.SetActive(false);
+
+        TRUF = false;
 
         foreach (GameObject pipe in GameObject.FindGameObjectsWithTag("PipeObject"))
         {

@@ -95,7 +95,8 @@ public class PlayerAPI : MonoBehaviour
                     "\nError: " + request.error +
                     "\nServer Response: " + request.downloadHandler.text
                 );
-                return null;
+                PlayerData player = new PlayerData();
+                return player;
             }
         }
     }
