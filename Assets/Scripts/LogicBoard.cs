@@ -465,11 +465,10 @@ public class LogicBoard : MonoBehaviour
 
        // Debug.Log("After score");
 
-        Bird.enabled = true;
+        Bird.ResetBird(birdStartPosition);
 
         //Debug.Log("After Bird");
 
-        BirdObject.transform.position = birdStartPosition;
 
         Debug.Log(transform.position);
         // Output in Console: (1.2, 3.4, 0.0)

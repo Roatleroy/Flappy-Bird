@@ -16,6 +16,35 @@ public class BirdCode : MonoBehaviour
   
     float tiltUpTimer;
     public float tiltUpDuration;
+    private RigidbodyConstraints2D flightConstraints;
+    private bool hasDied;
+    private bool hasLanded;
+
+    private void Awake()
+    {
+        if (myRigidbody == null)
+            myRigidbody = GetComponent<Rigidbody2D>();
+
+        // Collisions must not compete with the scripted tilt.
+        flightConstraints = myRigidbody.constraints | RigidbodyConstraints2D.FreezeRotation;
+        myRigidbody.constraints = flightConstraints;
+        myRigidbody.angularVelocity = 0f;
+    }
+
+    public void ResetBird(Vector3 startPosition)
+    {
+        myRigidbody.linearVelocity = Vector2.zero;
+        myRigidbody.angularVelocity = 0f;
+        myRigidbody.position = startPosition;
+        myRigidbody.rotation = 0f;
+        myRigidbody.constraints = flightConstraints;
+        tiltUpTimer = 0f;
+        targetRotation = 0f;
+        hasDied = false;
+        hasLanded = false;
+        enabled = true;
+        myRigidbody.WakeUp();
+    }
 
     // --------------------------  END GAME
     public Spawner spawn;
@@ -37,6 +66,7 @@ public class BirdCode : MonoBehaviour
     // Also sets behavior for bird object interacting with gravity and when flapping
     void Update()
     {
+        if (hasDied) return;
         // if either the space bar or left moust button is clicked and TRUF is true. TRUF is an true false indicator to indicate menu mode or game mode.
         if ((Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && logicBoard.TRUF)
         {
@@ -53,25 +83,31 @@ public class BirdCode : MonoBehaviour
         }
 
 
-        tiltUpTimer -= Time.deltaTime;
+    }
+
+    private void FixedUpdate()
+    {
+        if (hasLanded) return;
+
+        tiltUpTimer -= Time.fixedDeltaTime;
 
         targetRotation = tiltUpTimer > 0f ? 10f : -85f;
 
         //Roatate Bird Object UP to Z = 10
         if (targetRotation == 10f)
         {
-            myRigidbody.rotation = Mathf.MoveTowards(
+            myRigidbody.rotation = Mathf.MoveTowardsAngle(
                 myRigidbody.rotation,
                 targetRotation,
-                rotationSpeedUp * Time.deltaTime
+                rotationSpeedUp * Time.fixedDeltaTime
             );
         }
         else //Roatate Bird Object DOWN Z=-85
         {
-            myRigidbody.rotation = Mathf.MoveTowards(
+            myRigidbody.rotation = Mathf.MoveTowardsAngle(
                 myRigidbody.rotation,
                 targetRotation,
-                rotationSpeedDown * Time.deltaTime
+                rotationSpeedDown * Time.fixedDeltaTime
             );
         }
     }
@@ -80,8 +116,14 @@ public class BirdCode : MonoBehaviour
     // Send code to LOGIC BOARD to start menu. 
     private void OnCollisionEnter2D(Collision2D Collision)
     {
-        if (Collision.gameObject.CompareTag("Obstacle") || Collision.gameObject.CompareTag("Floor"))
+        // Unity can deliver collision callbacks to disabled behaviours too.
+        if (hasLanded) return;
+
+        bool hitFloor = Collision.gameObject.CompareTag("Floor");
+        if (!hasDied && (Collision.gameObject.CompareTag("Obstacle") || hitFloor))
         {
+            hasDied = true;
+            tiltUpTimer = 0f;
             DIE.Play();
 
             foreach (PipeMove pipe in FindObjectsByType<PipeMove>())
@@ -106,8 +148,12 @@ public class BirdCode : MonoBehaviour
             logicBoard.TRUF = false;
 
         }
-        if (Collision.gameObject.CompareTag("Floor"))
+        if (hitFloor)
         {
+            hasLanded = true;
+            myRigidbody.linearVelocity = Vector2.zero;
+            myRigidbody.angularVelocity = 0f;
+            myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             logicBoard.endGameMenu();
             menu.Play();
         }
